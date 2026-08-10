@@ -1,0 +1,161 @@
+/* ---------- basic page setup ---------- */
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  background: #0f1117;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #e7e9ee;
+}
+
+/* the whole thing sits inside one centered card */
+.page-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #171a23;
+  border-radius: 14px;
+  border: 1px solid #262a36;
+  padding: 32px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0 0 28px 0;
+  color: #8b8fa3;
+  font-size: 14px;
+}
+
+/* ---------- job description box ---------- */
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c5c8d6;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.job-description-input {
+  width: 100%;
+  height: 130px;
+  padding: 14px;
+  background: #0f1117;
+  border: 1px solid #2a2e3b;
+  border-radius: 10px;
+  color: #e7e9ee;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-bottom: 24px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.job-description-input::placeholder {
+  color: #5c6072;
+}
+
+.job-description-input:focus {
+  outline: none;
+  border-color: #7c5cff;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.15);
+}
+
+/* ---------- resume upload box ---------- */
+.resume-upload-box {
+  border: 2px dashed #2a2e3b;
+  border-radius: 10px;
+  padding: 32px 20px;
+  text-align: center;
+  background: #0f1117;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.resume-upload-box:hover {
+  border-color: #444a5e;
+  background: #14161f;
+}
+
+/* toggle this class from your component while a file is dragged over the box */
+.resume-upload-box.drag-over {
+  border-color: #7c5cff;
+  background: rgba(124, 92, 255, 0.08);
+}
+
+.upload-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.upload-text {
+  font-size: 14px;
+  color: #e7e9ee;
+  margin: 0 0 4px 0;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: #6b6f82;
+  margin: 0;
+}
+
+/* hide the real file input, trigger it via the styled box above */
+.resume-upload-input {
+  display: none;
+}
+
+/* shown once a file has been picked */
+.file-name-display {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #cfd2e0;
+  background: #1e2230;
+  border: 1px solid #2a2e3b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  /* set to "display: none" by default in your component logic,
+     and switch to block once a file is selected */
+}
+
+/* ---------- analyze button ---------- */
+.analyze-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c5cff, #5b3df0);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.analyze-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.analyze-button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+/* disable this from your component until both fields are filled */
+.analyze-button:disabled {
+  background: #262a36;
+  color: #6b6f82;
+  cursor: not-allowed;
+}

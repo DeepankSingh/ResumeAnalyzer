@@ -1,0 +1,36 @@
+<div class="page-wrapper">
+
+  <h1>Resume Analyser</h1>
+  <p class="subtitle">Paste a job description and upload your resume to see how well they match.</p>
+
+  <!-- job description -->
+  <label class="field-label" for="jobDescription">Job description</label>
+  <textarea
+    id="jobDescription"
+    class="job-description-input"
+    placeholder="Enter the job description to compare your resume with..."
+  ></textarea>
+
+  <!-- resume upload -->
+  <label class="field-label">Resume</label>
+
+  <!--
+    "drag-over" class below is just there to show what the box looks like
+    while a file is being dragged over it. Add/remove it from your
+    component code (e.g. with [class.drag-over]="isDragging").
+  -->
+  <div class="resume-upload-box" id="uploadBox">
+    <div class="upload-icon">📄</div>
+    <p class="upload-text">Click to upload, or drag and drop your resume here</p>
+    <p class="upload-subtext">PDF or DOCX</p>
+  </div>
+
+  <input class="resume-upload-input" id="resumeInput" type="file" accept=".pdf,.doc,.docx" />
+
+  <!-- shown once a file is selected, hidden otherwise -->
+  <div class="file-name-display" id="fileNameDisplay">Selected: resume.pdf</div>
+
+  <!-- analyze button -->
+  <button class="analyze-button" id="analyzeButton">Analyze</button>
+
+</div>
