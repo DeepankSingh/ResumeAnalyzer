@@ -8,12 +8,12 @@ import { ResumeUploadPageComponent } from './resume-upload-page/resume-upload-pa
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ResumeUploadPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ResumeUploadPageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

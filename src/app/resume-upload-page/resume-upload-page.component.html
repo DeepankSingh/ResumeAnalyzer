@@ -9,28 +9,38 @@
     id="jobDescription"
     class="job-description-input"
     placeholder="Enter the job description to compare your resume with..."
+    [(ngModel)]="jobDescription"
   ></textarea>
 
   <!-- resume upload -->
   <label class="field-label">Resume</label>
 
-  <!--
-    "drag-over" class below is just there to show what the box looks like
-    while a file is being dragged over it. Add/remove it from your
-    component code (e.g. with [class.drag-over]="isDragging").
-  -->
-  <div class="resume-upload-box" id="uploadBox">
+
+<div class="resume-upload-box" id="uploadBox" [class.drag-over]="isDragging" (click)="resumeInput.click()"
+    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
     <div class="upload-icon">📄</div>
     <p class="upload-text">Click to upload, or drag and drop your resume here</p>
     <p class="upload-subtext">PDF or DOCX</p>
   </div>
 
-  <input class="resume-upload-input" id="resumeInput" type="file" accept=".pdf,.doc,.docx" />
+  <input 
+  #resumeInput 
+  class="resume-upload-input" 
+  id="resumeInput" 
+  type="file" 
+  accept=".pdf,.doc,.docx"
+  (change)="onFileSelected($event)"
+   />
 
   <!-- shown once a file is selected, hidden otherwise -->
-  <div class="file-name-display" id="fileNameDisplay">Selected: resume.pdf</div>
+  <div class="file-name-display" id="fileNameDisplay" *ngIf= "selectedFile">Selected: {{selectedFile.name}}</div>
 
   <!-- analyze button -->
-  <button class="analyze-button" id="analyzeButton">Analyze</button>
+  <button 
+  class="analyze-button" 
+  id="analyzeButton"
+  [disabled]="!selectedFile || !jobDescription"
+  (click)="onAnalyzeClick()"
+  >Analyze</button>
 
 </div>
