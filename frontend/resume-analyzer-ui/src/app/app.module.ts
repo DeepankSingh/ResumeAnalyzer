@@ -7,7 +7,7 @@ import { ResumeUploadPageComponent } from './resume-upload-page/resume-upload-pa
 import { ReseumePreviewPageComponent } from './resume-upload-page/reseume-preview-page/reseume-preview-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
       closeButton: true
     }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

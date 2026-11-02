@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ResumeAnalyzerService } from '../services/resume-analyzer.service';
 
 @Component({
   selector: 'app-resume-upload-page',
@@ -16,10 +17,10 @@ import { ToastrService } from 'ngx-toastr';
 export class ResumeUploadPageComponent {
 
 jobDescription: string = '';
-selectedFile: File | null = null;
+selectedFile: any
 isDragging: boolean = false;
 
-constructor(private toastr: ToastrService) {}
+constructor(private toastr: ToastrService, private resumeAnalyzerService: ResumeAnalyzerService) {}
 
 isValid(file: File): boolean {
   if(!file) {
@@ -63,17 +64,55 @@ onDrop(event: DragEvent): void {
   const files = event.dataTransfer?.files;
   if (files && files.length > 0 && this.isValid(files[0])) {
     this.selectedFile = files[0];
+   
   }
 
 }
 
-onAnalyzeClick(): void {
+async onAnalyzeClick() {
   console.log('Job Description:', this.jobDescription);
   console.log('Selected File:', this.selectedFile);
+  
+    const convertedFile = await this.convertToBase64(this.selectedFile);
+  
+  const reqObj = {
+    jobDescription: this.jobDescription,
+    resumeFile: convertedFile,
+    fileName: this.selectedFile.name
+  } 
+
+  await this.resumeAnalyzerService.analyzeResume(reqObj).then((response) => {
+    if(response){
+      console.log('Analysis Response:', response);
+    }
+  });
   this.toastr.success('Analysis started. Check console for details.');
 }
 
 
+convertToBase64(file: File): Promise<string> {
 
+  return new Promise((resolve, reject) => {
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+
+      const base64 = (reader.result as string).split(',')[1];
+
+      resolve(base64);
+
+    };
+
+    reader.onerror = () => {
+      reject('File conversion failed');
+    };
+
+  });
+}
 
 }
+
+

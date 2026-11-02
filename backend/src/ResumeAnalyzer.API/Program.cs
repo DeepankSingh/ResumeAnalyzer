@@ -17,6 +17,8 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseCors("AngularPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();
